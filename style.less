@@ -1,0 +1,91 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: antiquewhite;
+}
+
+.Body\.cls {
+  .Centered();
+  flex-direction: column;
+  .Title\.cls {
+    .Right();
+    height: 5vh;
+    padding: 0 10px;
+    font-size: 2em;
+    font-family: "Berlin Sans FB", sans-serif;
+    .Menu\.cls {
+      height: 100%;
+      width: 5vh;
+      .GapBetween();
+      flex-direction: column;
+      cursor: pointer;
+      .Line\.cls {
+        width: 4vh;
+        height: 1vh;
+        background-color: black;
+        border-radius: 3px;
+      }
+    }
+  }
+}
+.Content\.cls {
+  width: 100%;
+  height: 90vh;
+  .GapBetween();
+  .Column\.cls {
+    width: 32vw;
+    height: 100%;
+    padding-top: 4vh;
+    position: relative;
+    .Vertical\.cls {
+      .Centered();
+      .Rod\.cls {
+        height: 82vh;
+        width: 2vw;
+      }
+    }
+    .Horizontal\.cls {
+      .Centered();
+      .Rod\.cls {
+        height: 3vh;
+        width: 32vw;
+      }
+    }
+    .Block\.cls {
+      height: 5vh;
+      width: 100%;
+      position: absolute;
+      .Centered();
+      .InnerBlock\.cls {
+        cursor: grab;
+      }
+    }
+  }
+}
+.Rod\.cls {
+  background-color: black;
+}
+.Footer\.cls {
+  width: 100%;
+  height: 6vh;
+  background-color: rebeccapurple;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+}
+.Centered() {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+.Right() {
+  display: flex;
+  align-content: flex-end;
+  justify-content: space-between;
+}
+.GapBetween() {
+  display: flex;
+  align-content: space-around;
+  justify-content: space-around;
+}

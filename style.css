@@ -1,0 +1,62 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.Body\.cls {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.Body\.cls .Title\.cls {
+  text-align: center;
+  height: 5vh;
+}
+.Content\.cls {
+  width: 100%;
+  height: 90vh;
+  display: flex;
+  align-content: space-around;
+  justify-content: space-around;
+}
+.Content\.cls .Column\.cls {
+  width: 32vw;
+  height: 100%;
+  padding-top: 4vh;
+  background-color: cornflowerblue;
+  position: relative;
+}
+.Content\.cls .Column\.cls .Vertical\.cls {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+.Content\.cls .Column\.cls .Vertical\.cls .Rod\.cls {
+  height: 82vh;
+  width: 2vw;
+}
+.Content\.cls .Column\.cls .Horizontal\.cls {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+.Content\.cls .Column\.cls .Horizontal\.cls .Rod\.cls {
+  height: 3vh;
+  width: 32vw;
+}
+.Content\.cls .Column\.cls .Block\.cls {
+  height: 5vh;
+  position: absolute;
+}
+.Rod\.cls {
+  background-color: black;
+}
+.Footer\.cls {
+  width: 100%;
+  height: 5vh;
+  background-color: rebeccapurple;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+}
