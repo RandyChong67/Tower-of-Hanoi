@@ -5,7 +5,7 @@
     <title>Tower of Hanoi</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet/less" type="text/css" href="style.less" />
-    <script src="https://cdn.jsdelivr.net/npm/less" ></script>
+    <script src="https://cdn.jsdelivr.net/npm/less"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/underscore@1.13.4/underscore-umd-min.js"></script>
     <script rel="text/javascript" src="script.js" defer></script>
@@ -18,7 +18,7 @@
         <div class="Line.cls"></div>
     </div>
     <span id="Move.id">Move: 0</span>
-    <div id="Time.id">
+    <div>
         <span id="Hours.id">00:</span>
         <span id="Minutes.id">00:</span>
         <span id="Seconds.id">00</span>
@@ -52,6 +52,32 @@
 </div>
 <div class="Footer.cls">
 
+</div>
+<div class="Modal.cls Inactive.cls" id="Result.id">
+    <div class="Dialog.cls">
+        <div class="Title.cls">
+            <span>Congratulations! You win!</span>
+        </div>
+        <div class="Content.cls">
+            <div class="Level.cls">Level: <span id="Level.id">Easy</span></div>
+            <div class="Move.cls">Move count: <span id="MoveCount.id">48</span></div>
+            <div class="Time.cls">
+                Time used:
+                <span id="HoursUsed.id">00:</span>h
+                <span id="MinUsed.id">00:</span>m
+                <span id="SecUsed.id">00</span>s
+            </div>
+            <div class="Name.cls">
+                <label for="Name.id">Nickname: </label>
+                <input type="text" class="Input.cls" id="Name.id">
+            </div>
+        </div>
+        <div class="Button.cls">
+            <button role="button" id="Share.id">Share to Leaderboard</button>
+            <button role="button" id="Restart.id">Restart</button>
+            <button role="button" id="Options.id">Options</button>
+        </div>
+    </div>
 </div>
 </body>
 </html>

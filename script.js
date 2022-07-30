@@ -18,16 +18,16 @@
         },
         $left_rod = $('#Left\\.id'),
         $columns = $('.Column\\.cls'),
-        $prev_col,
-        moves = 0,
         $move_count = $('#Move\\.id'),
         $hours = $('#Hours\\.id'),
         $mins = $('#Minutes\\.id'),
         $sec = $('#Seconds\\.id'),
+        is_start = false,
+        $prev_col,
+        moves = 0,
         hours = 0,
         mins = 0,
         sec = 0,
-        is_start = false,
         timer;
 
     _.each(blocks, function (block, index) {
@@ -95,15 +95,59 @@
     function dropBlock($column, e) {
         var block_list = $column.children('.Block\\.cls'),
             data = e.originalEvent.dataTransfer.getData('text'),
-            $block = $('#' + data.replace('.id', '\\.id'));
+            $block = $('#' + data.replace('.id', '\\.id')),
+            cur_col = e.currentTarget;
 
+        // checking to ensure the block is dropped on the correct rod
         if ($block.attr('data-value') >= $column.attr('data-value') &&
             $column.attr('id') !== $prev_col.attr('id')) {
             $block.css('bottom', '' + (4 + (5 * block_list.length)) + 'vh');
             e.preventDefault();
-            e.currentTarget.appendChild(document.getElementById(data));
+            cur_col.appendChild(document.getElementById(data));
             moves++;
             $move_count.html('Move: ' + moves);
+            block_list = $column.children('.Block\\.cls');
+
+            // win
+            if (block_list.length === Object.keys(blocks).length && cur_col.id !== 'Left.id') {
+                showResult();
+            }
+        }
+
+        function showResult() {
+            var $result_dialog = $('#Result\\.id'),
+                $level = $('#Level\\.id'),
+                $move_count = $('#MoveCount\\.id'),
+                $hours_used = $('#HoursUsed\\.id'),
+                $mins_used = $('#MinUsed\\.id'),
+                $sec_used = $('#SecUsed\\.id'),
+                $name_input = $('#Name\\.id');
+
+            clearTimeout(timer);
+            $result_dialog.removeClass('Inactive.cls');
+            $move_count.text(moves);
+            $hours_used.text(hours);
+            $mins_used.text(mins);
+            $sec_used.text(sec);
+            $result_dialog.on('click', function (e) {
+                switch (e.target.id) {
+                    case 'Share.id':
+                        if ($name_input.val().trim().length === 0) {
+                            $name_input.attr('placeholder', 'Enter your name before proceed.');
+                            $name_input.css('border-bottom', 'red dashed');
+                            break;
+                        }
+                        $result_dialog.addClass('Inactive.cls');
+                        break;
+                    case 'Restart.id':
+                    case 'Options.id':
+                        $result_dialog.addClass('Inactive.cls');
+                        break;
+                }
+            });
+            $name_input.on('input', function (e) {
+                $name_input.css('border-bottom', 'black dashed');
+            });
         }
     }
     

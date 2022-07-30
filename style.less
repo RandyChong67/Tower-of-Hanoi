@@ -2,10 +2,11 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background-color: antiquewhite;
+  font-family: "Berlin Sans FB", sans-serif;
 }
 
 .Body\.cls {
+  background-color: antiquewhite;
   .Centered();
   flex-direction: column;
   .Title\.cls {
@@ -13,7 +14,7 @@
     height: 5vh;
     padding: 0 10px;
     font-size: 2em;
-    font-family: "Berlin Sans FB", sans-serif;
+    position: relative;
     .Menu\.cls {
       height: 100%;
       width: 5vh;
@@ -27,38 +28,54 @@
         border-radius: 3px;
       }
     }
-  }
-}
-.Content\.cls {
-  width: 100%;
-  height: 90vh;
-  .GapBetween();
-  .Column\.cls {
-    width: 32vw;
-    height: 100%;
-    padding-top: 4vh;
-    position: relative;
-    .Vertical\.cls {
-      .Centered();
-      .Rod\.cls {
-        height: 82vh;
-        width: 2vw;
-      }
-    }
-    .Horizontal\.cls {
-      .Centered();
-      .Rod\.cls {
-        height: 3vh;
-        width: 32vw;
-      }
-    }
-    .Block\.cls {
-      height: 5vh;
-      width: 100%;
+    #Move\.id {
       position: absolute;
-      .Centered();
-      .InnerBlock\.cls {
-        cursor: grab;
+      left: 45%;
+      @media (max-width: 700px) {
+        left: 40%;
+      }
+      @media (max-width: 520px) {
+        left: 30%;
+      }
+      @media (max-width: 420px) {
+        left: 25%;
+      }
+      @media (max-width: 380px) {
+        left: 20%;
+      }
+    }
+  }
+  .Content\.cls {
+    width: 100%;
+    height: 90vh;
+    .GapBetween();
+    .Column\.cls {
+      width: 32vw;
+      height: 100%;
+      padding-top: 4vh;
+      position: relative;
+      .Vertical\.cls {
+        .Centered();
+        .Rod\.cls {
+          height: 82vh;
+          width: 2vw;
+        }
+      }
+      .Horizontal\.cls {
+        .Centered();
+        .Rod\.cls {
+          height: 3vh;
+          width: 32vw;
+        }
+      }
+      .Block\.cls {
+        height: 5vh;
+        width: 100%;
+        position: absolute;
+        .Centered();
+        .InnerBlock\.cls {
+          cursor: grab;
+        }
       }
     }
   }
@@ -69,10 +86,103 @@
 .Footer\.cls {
   width: 100%;
   height: 6vh;
-  background-color: rebeccapurple;
+  background-color: #D6D6E7;
   position: fixed;
   left: 0;
   bottom: 0;
+}
+.Modal\.cls {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 5000;
+  background-color: rgba(0, 0, 0, 0.5);
+  bottom: 0;
+  .Centered();
+  .Dialog\.cls {
+    width: 50%;
+    height: 60%;
+    background-color: rgba(255, 255, 255, 1);
+    position: absolute;
+    top: 15%;
+    .Title\.cls {
+      height: 10%;
+      color: tomato;
+      .Centered();
+      padding: 5px 0;
+      text-shadow: 1px 1px black;
+    }
+    .Content\.cls {
+      .GapBetween();
+      flex-direction: column;
+      height: 60%;
+      width: 100%;
+      text-align: center;
+      font-size: 1.5em;
+      .Input\.cls {
+        font-size: 0.8em;
+        width: 40%;
+        border: none;
+        border-bottom: black dashed;
+        &:focus-visible {
+          outline: none;
+        }
+      }
+    }
+    .Button\.cls {
+      .GapBetween();
+      height: 30%;
+      padding: 40px 0;
+      margin-top: 10px;
+    }
+  }
+}
+.Inactive\.cls {
+  display: none;
+}
+button {
+  align-items: center;
+  appearance: none;
+  background-color: #FCFCFD;
+  border-radius: 4px;
+  border-width: 0;
+  box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,rgba(45, 35, 66, 0.3) 0 7px 13px -3px,#D6D6E7 0 -3px 0 inset;
+  box-sizing: border-box;
+  color: #36395A;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: "JetBrains Mono",monospace;
+  height: 48px;
+  justify-content: center;
+  line-height: 1;
+  list-style: none;
+  overflow: hidden;
+  padding-left: 16px;
+  padding-right: 16px;
+  position: relative;
+  text-align: left;
+  text-decoration: none;
+  transition: box-shadow .15s,transform .15s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  will-change: box-shadow,transform;
+  font-size: 18px;
+  &:focus {
+    box-shadow: #D6D6E7 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+  }
+  &:hover:after {
+    transform: translate(0, 0);
+  }
+  &:active {
+    box-shadow: #D6D6E7 0 3px 7px inset;
+    transform: translateY(2px);
+  }
+  &:hover {
+    box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+    transform: translateY(-2px);
+  }
 }
 .Centered() {
   display: flex;
