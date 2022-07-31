@@ -101,6 +101,7 @@
   .Centered();
   .Dialog\.cls {
     width: 50%;
+    min-width: 450px;
     height: 60%;
     background-color: rgba(255, 255, 255, 1);
     position: absolute;
@@ -128,6 +129,62 @@
           outline: none;
         }
       }
+      .Row\.cls {
+        .GapBetween();
+        .Radio\.cls {
+          position: absolute;
+          opacity: 0;
+          cursor: pointer;
+        }
+        .Label\.cls {
+          display: block;
+          position: relative;
+          padding-left: 35px;
+          margin-bottom: 12px;
+          cursor: pointer;
+          font-size: 22px;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
+          & input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+          }
+          .Checkmark\.cls {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 25px;
+            width: 25px;
+            background-color: #eee;
+            border-radius: 50%;
+          }
+          &:hover input ~ .Checkmark\.cls {
+            background-color: #ccc;
+          }
+          & input:checked ~ .Checkmark\.cls {
+            background-color: #2196F3;
+          }
+          .Checkmark\.cls:after {
+            content: "";
+            position: absolute;
+            display: none;
+          }
+          & input:checked ~ .Checkmark\.cls:after {
+            display: block;
+          }
+          & .Checkmark\.cls:after {
+            top: 9px;
+            left: 9px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: white;
+          }
+        }
+      }
     }
     .Button\.cls {
       .GapBetween();
@@ -136,6 +193,11 @@
       margin-top: 10px;
     }
   }
+}
+.Separator\.cls {
+  height: 1px;
+  width: 100%;
+  background-color: #cccccc;
 }
 .Inactive\.cls {
   display: none;

@@ -19,9 +19,7 @@
     </div>
     <span id="Move.id">Move: 0</span>
     <div>
-        <span id="Hours.id">00:</span>
-        <span id="Minutes.id">00:</span>
-        <span id="Seconds.id">00</span>
+        <span id="Timer.id">0:0:000</span>
     </div>
 </div>
 <div class="Content.cls">
@@ -63,19 +61,69 @@
             <div class="Move.cls">Move count: <span id="MoveCount.id">48</span></div>
             <div class="Time.cls">
                 Time used:
-                <span id="HoursUsed.id">00:</span>h
-                <span id="MinUsed.id">00:</span>m
+                <span id="MinUsed.id">00</span>m
                 <span id="SecUsed.id">00</span>s
+                <span id="MilliUsed.id">00</span>ms
             </div>
             <div class="Name.cls">
                 <label for="Name.id">Nickname: </label>
-                <input type="text" class="Input.cls" id="Name.id">
+                <input type="text" class="Input.cls" id="Name.id" maxlength="20">
             </div>
         </div>
         <div class="Button.cls">
             <button role="button" id="Share.id">Share to Leaderboard</button>
             <button role="button" id="Restart.id">Restart</button>
             <button role="button" id="Options.id">Options</button>
+        </div>
+    </div>
+</div>
+<div class="Modal.cls Inactive.cls" id="OptDialog.id">
+    <div class="Dialog.cls">
+        <div class="Title.cls">
+            <span>Options</span>
+        </div>
+        <div class="Content.cls">
+            <div class="Separator.cls"></div>
+            <div class="Row.cls">
+                <p>
+                    Level:
+                </p>
+                <label for="Easy.id" class="Label.cls">
+                    <input type="radio" name="level" value="easy" id="Easy.id" class="Radio.cls" checked> Easy
+                    <span class="Checkmark.cls"></span>
+                </label>
+                <label for="Medium.id" class="Label.cls">
+                    <input type="radio" name="level" value="medium" id="Medium.id" class="Radio.cls"> Medium
+                    <span class="Checkmark.cls"></span>
+                </label>
+                <label for="Hard.id" class="Label.cls">
+                    <input type="radio" name="level" value="hard" id="Hard.id" class="Radio.cls"> Hard
+                    <span class="Checkmark.cls"></span>
+                </label>
+            </div>
+            <div class="Separator.cls"></div>
+            <div class="Row.cls">
+                <p>
+                    Color of Blocks:
+                </p>
+                <label for="Blue.id" class="Label.cls" style="color: blue">
+                    <input type="radio" name="color" value="blue" id="Blue.id" class="Radio.cls" checked> Blue
+                    <span class="Checkmark.cls"></span>
+                </label>
+                <label for="Red.id" class="Label.cls" style="color: red">
+                    <input type="radio" name="color" value="red" id="Red.id" class="Radio.cls"> Red
+                    <span class="Checkmark.cls"></span>
+                </label>
+                <label for="Green.id" class="Label.cls" style="color: limegreen">
+                    <input type="radio" name="color" value="green" id="Green.id" class="Radio.cls"> Green
+                    <span class="Checkmark.cls"></span>
+                </label>
+            </div>
+            <div class="Separator.cls"></div>
+        </div>
+        <div class="Button.cls">
+            <button id="Back.id">Back</button>
+            <button id="Start.id"> Start! </button>
         </div>
     </div>
 </div>
