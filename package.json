@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "@types/jquery": "^3.5.14",
+    "firebase": "^9.19.1",
     "gulp-autoprefixer": "^8.0.0",
     "gulp-less": "^5.0.0",
     "underscore": "^1.13.4"
