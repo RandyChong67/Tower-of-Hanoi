@@ -1,5 +1,5 @@
 (function () {
-    var blocks = {
+    var BLOCKS = {
             1: {
                 width: '30vw',
                 bottom: '4vh'
@@ -29,7 +29,7 @@
                 bottom: '34vh'
             }
         },
-        colors = {
+        COLORS = {
             red: {
                 1: 'hsl(0, 100%, 25%)',
                 2: 'hsl(0, 100%, 35%)',
@@ -58,7 +58,7 @@
                 7: 'hsl(212, 100%, 85%)'
             }
         },
-        levels = {
+        LEVELS = {
             easy: 3,
             medium: 5,
             hard: 7
@@ -67,20 +67,20 @@
     showOptDialog();
 
     function showOptDialog() {
-        var $opt_dialog = $('#OptDialog\\.id'),
+        var $opt_dialog = $('#opt_dialog\\.id'),
             level,
             color;
 
         $opt_dialog.removeClass('Inactive.cls');
         $opt_dialog.on('click', function (e) {
             switch (e.target.id) {
-                case 'Start.id':
+                case 'start.id':
                     level = $('input[name="level"]:checked').val();
                     color = $('input[name="color"]:checked').val();
                     initGame(level, color);
                     $opt_dialog.addClass('Inactive.cls');
                     break;
-                case 'Back.id':
+                case 'back.id':
                     $opt_dialog.addClass('Inactive.cls');
                     break;
             }
@@ -88,10 +88,10 @@
     }
 
     function initGame(level, color) {
-        var $left_rod = $('#Left\\.id'),
+        var $left_rod = $('#left\\.id'),
             $columns = $('.Column\\.cls'),
-            $move_count = $('#Move\\.id'),
-            $timer = $('#Timer\\.id'),
+            $move_count = $('#move\\.id'),
+            $timer = $('#timer\\.id'),
             is_start = false,
             $prev_col,
             moves = 0,
@@ -100,21 +100,25 @@
             milli = 0,
             timer;
 
-        _.every(blocks, function (block, index) {
-            var $block = $('<div class="Block.cls" draggable="true" id="Block' + index + '.id" data-value="' + index + '">' +
+        _.every(BLOCKS, function (block, index) {
+            var $block = $('<div class="Block.cls" draggable="true" id="block' + index + '.id" data-value="' + index + '">' +
                     '<div class="InnerBlock.cls"></div>' + '</div>'),
                 $inner = $block.children('.InnerBlock\\.cls');
+
             $inner.css('width', block.width)
-                .css('background-color', colors[color][index]);
+                .css('background-color', COLORS[color][index]);
             $block.css('bottom', block.bottom);
 
             $block.on('dragstart', function (e) {
+                var data_transfer = e.originalEvent.dataTransfer,
+                    cur_target = e.currentTarget;
+
                 this.style.opacity = '0.4';
-                $prev_col = $(e.currentTarget.parentNode);
+                $prev_col = $(cur_target.parentNode);
 
                 if ($(this).attr('data-value') === $prev_col.attr('data-value')) {
-                    e.originalEvent.dataTransfer.effectAllowed = 'move';
-                    e.originalEvent.dataTransfer.setData('text', e.currentTarget.id);
+                    data_transfer.effectAllowed = 'move';
+                    data_transfer.setData('text', cur_target.id);
 
                     console.log('start');
                     if (!is_start) {
@@ -125,14 +129,13 @@
             })
                 .on('dragend', function (e) {
                     this.style.opacity = '1';
-                    if ($prev_col) {
-                        setColIndex($prev_col);
-                    }
+
+                    if ($prev_col) { setColIndex($prev_col); }
                 });
 
             $left_rod.append($block);
 
-            return index < levels[level];
+            return index < LEVELS[level];
         });
 
         _.each($columns, function (column) {
@@ -187,30 +190,22 @@
                 block_list = $column.children('.Block\\.cls');
 
                 // win
-                if (block_list.length === levels[level] && cur_col.id !== 'Left.id') {
+                if (block_list.length === LEVELS[level] && cur_col.id !== 'left.id') {
                     showResult();
                 }
             }
 
             function showResult() {
-                var $result_dialog = $('#Result\\.id'),
-                    $level = $('#Level\\.id'),
-                    $move_count = $('#MoveCount\\.id'),
-                    $mins_used = $('#MinUsed\\.id'),
-                    $sec_used = $('#SecUsed\\.id'),
-                    $milli_used = $('#MilliUsed\\.id'),
-                    $name_input = $('#Name\\.id');
+                var $result_dialog = $('#result\\.id'),
+                    $name_input = $('#name\\.id');
 
                 clearInterval(timer);
                 $result_dialog.removeClass('Inactive.cls');
-                $level.text(level.charAt(0).toUpperCase() + level.slice(1));
-                $move_count.text(moves);
-                $mins_used.text(mins);
-                $sec_used.text(sec);
-                $milli_used.text(milli);
+                genResult();
+
                 $result_dialog.on('click', function (e) {
                     switch (e.target.id) {
-                        case 'Share.id':
+                        case 'share.id':
                             if ($name_input.val().trim().length === 0) {
                                 $name_input.attr('placeholder', 'Enter your name before proceed.');
                                 $name_input.css('border-bottom', 'red dashed');
@@ -218,8 +213,8 @@
                             }
                             $result_dialog.addClass('Inactive.cls');
                             break;
-                        case 'Restart.id':
-                        case 'Options.id':
+                        case 'restart.id':
+                        case 'options.id':
                             $result_dialog.addClass('Inactive.cls');
                             break;
                     }
@@ -227,6 +222,20 @@
                 $name_input.on('input', function (e) {
                     $name_input.css('border-bottom', 'black dashed');
                 });
+
+                function genResult() {
+                    var $level = $('#level\\.id'),
+                        $move_count = $('#move_count\\.id'),
+                        $mins_used = $('#min_used\\.id'),
+                        $sec_used = $('#sec_used\\.id'),
+                        $milli_used = $('#milli_used\\.id');
+
+                    $level.text(level.charAt(0).toUpperCase() + level.slice(1));
+                    $move_count.text(moves);
+                    $mins_used.text(mins);
+                    $sec_used.text(sec);
+                    $milli_used.text(milli);
+                }
             }
         }
 
